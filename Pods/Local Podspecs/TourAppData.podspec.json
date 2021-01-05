@@ -1,0 +1,24 @@
+{
+  "name": "TourAppData",
+  "version": "0.0.6",
+  "summary": "A short description of TourApp.",
+  "description": "Kotlin native framework containing the repository pattern\n  and the domain models",
+  "homepage": "https://github.com/pedrofraca/tourapp",
+  "license": "MIT",
+  "authors": {
+    "": "pedro.fraca@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/pedrofraca/tourapp.git",
+    "tag": "0.0.6"
+  },
+  "public_header_files": "data.framework/Headers/*.h",
+  "source_files": "data.framework/Headers/*.h",
+  "vendored_frameworks": "data.framework",
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}
