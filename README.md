@@ -6,3 +6,5 @@ This is a sample where you can see how is possible to use kotlin native on a cle
 In order to build the project:
 
 ```pod install```
+
+Icons made by monkik from www.flaticon.com
