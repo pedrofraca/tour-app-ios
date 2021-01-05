@@ -1,6 +1,0 @@
-framework module Pods_TourApp {
-  umbrella header "Pods-TourApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
