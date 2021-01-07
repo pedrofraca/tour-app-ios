@@ -23,6 +23,7 @@ class StageDatabaseSource : WriteDataSource {
         stage.name = domainStage.name
         stage.id = domainStage.stage
         stage.winner = domainStage.winner
+        stage.images = domainStage.images
         do {
             try theContext.save()
         } catch {
@@ -42,7 +43,7 @@ class StageDatabaseSource : WriteDataSource {
                 DomainStageModel.init(name: $0.name ?? "",
                 winner: $0.winner,
                 leader: "",
-                images: [],
+                images: $0.images,
                 description: "",
                 km: "",
                 imgUrl: "",

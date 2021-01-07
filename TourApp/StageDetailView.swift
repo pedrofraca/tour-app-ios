@@ -24,6 +24,6 @@ struct StageDetailView: View {
 
 struct StageDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        StageDetailView(stage : TourStage.init(id: 1, name: "Test Stage", winner : "", leader: "", kms : ""))
+        StageDetailView(stage : TourStage.init(id: 1, name: "Test Stage", winner : "", leader: "", kms : "", imgUrl: ""))
     }
 }

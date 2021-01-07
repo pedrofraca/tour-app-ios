@@ -13,8 +13,8 @@ import RxSwift
 
 
 enum LoadingState {
-       case loading, done, error
-   }
+    case loading, done, error
+}
 
 class TourStageViewModel: ObservableObject {
     let concurrentBackground = ConcurrentDispatchQueueScheduler.init(qos: .background)
@@ -35,13 +35,13 @@ class TourStageViewModel: ObservableObject {
         let repo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: theContext))
         
         let networkObservable = Observable<[TourStage]>.create { observer in
-            observer.onNext(repo.refresh().map { a in TourStage(id: a.stage, name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "") })
+            observer.onNext(repo.refresh().map { a in TourStage(id: a.stage, name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.images?[0] ?? "") })
             observer.onCompleted()
             return Disposables.create()
         }
         
         let databaseObservable = Observable<[TourStage]>.create { observer in
-            observer.onNext(repo.stages.map { a in TourStage(id: a.stage,name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "") })
+            observer.onNext(repo.stages.map { a in TourStage(id: a.stage,name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.images?[0] ?? "") })
             observer.onCompleted()
             return Disposables.create()
         }
@@ -54,7 +54,7 @@ class TourStageViewModel: ObservableObject {
             .observeOn(main)
             .subscribe(onNext: { it in self.stages = it ?? []},
                        onCompleted: { [weak self] in
-                self?.state = .done
+                        self?.state = .done
             }).disposed(by: disposeBag)
     }
 }
@@ -75,7 +75,7 @@ struct ContentView: View {
 
 struct LoadingView : View {
     var body : some View {
-         Text("Loading")
+        Text("Loading")
     }
 }
 
@@ -84,18 +84,18 @@ struct DoneView : View {
     let stages: [TourStage]
     
     var body : some View {
-         NavigationView {
-             List {
-                 ForEach(stages, id:\.self) { stage in
+        NavigationView {
+            ScrollView {
+                ForEach(stages, id:\.self) { stage in
                     ZStack{
-                        TourStageRowView(stage: stage).listStyle(PlainListStyle())
+                        TourStageRowView(stage: stage)
                         NavigationLink(destination: StageDetailView(stage: stage)) {
                             EmptyView()
                         }
-                        }
-                 }
-             }.navigationBarTitle(Text("Tour App Stages(\(stages.count))"))
-         }
+                    }
+                }.padding()
+            }.navigationBarTitle(Text("Tour App Stages(\(stages.count))"))
+        }
     }
 }
 
@@ -103,27 +103,56 @@ struct DoneView : View {
 
 struct TourStageRowView : View {
     let stage : TourStage
-      var body: some View {
-        VStack(alignment: .leading) {
-            Image("stage_1")
-                .resizable()
+    
+    
+    var body: some View {
+        ZStack(alignment: .top) {
+            UrlImageView(url : stage.imgUrl)
             HStack {
-                Text("Winner: " + stage.winner).frame(maxWidth: .infinity)
-                Spacer()
-                Text("Leader: " + stage.leader).frame(maxWidth: .infinity)
-            }.background(Color.yellow)
-            HStack {
-                Text(stage.name)
-                Spacer()
-                Text("KMs " +  stage.kms)
-            }.background(Color("RowStageSection"))
-        }.padding(.horizontal, -15)
+                VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text(stage.name).foregroundColor(Color(UIColor.white))
+                                .fontWeight(.semibold)
+                            //                        Spacer()
+                            //                        Text("KMs " +  stage.kms)
+                        }
+                    }
+            }
+            
+//            HStack {
+//                Text("Winner: " + stage.winner).frame(maxWidth: .infinity)
+//                Spacer()
+//                Text("Leader: " + stage.leader).frame(maxWidth: .infinity)
+//            }.background(Color.yellow)
+            
+        }
+    }
+}
+
+struct UrlImageView : View {
+    
+    @ObservedObject var imageLoader = ImageLoader()
+    @State var image:UIImage = UIImage(imageLiteralResourceName: "stage_1")
+    
+    init(url : String) {
+        self.imageLoader.load(urlString: url)
+    }
+    
+    var body : some View {
+        Image(uiImage: image)
+            .resizable()
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(radius: 5)
+            .frame(width: UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.45)
+            .onReceive(imageLoader.didChange) { data in
+                self.image = UIImage(data: data) ?? UIImage()
+            }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let stage = TourStage(id: 0, name: "",winner: "",leader: "",kms: "")
+        let stage = TourStage(id: 0, name: "",winner: "",leader: "",kms: "", imgUrl: "")
         return TourStageRowView(stage: stage)
     }
 }

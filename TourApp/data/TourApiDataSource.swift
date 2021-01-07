@@ -16,9 +16,11 @@ struct StageApiModel: Codable {
     var leader: String
     var km : String
     var stage : String
+    var imgs : [String]
     
     enum CodingKeys: String, CodingKey {
         case date, name, winner = "stage-winner", leader = "stage-leader", km, stage
+        case imgs = "stage-images"
     }
     
 }
@@ -58,7 +60,7 @@ public class TourApiDataSource : ReadOnlyDataSource {
                 data = decodedResponse.map { DomainStageModel.init(name: $0.name,
                                                                    winner: $0.winner,
                                                                    leader: $0.leader,
-                                                                   images: [],
+                                                                   images: $0.imgs,
                                                                    description: "",
                                                                    km: $0.km,
                                                                    imgUrl: "",

@@ -13,4 +13,5 @@ public class Stage: NSManagedObject {
     @NSManaged public var id: Int32
     @NSManaged public var name: String?
     @NSManaged public var winner: String?
+    @NSManaged public var images: [String]?
 }

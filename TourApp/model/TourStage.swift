@@ -10,5 +10,5 @@ import Foundation
 
 struct TourStage : Identifiable, Hashable {
     let id : Int32
-    let name, winner, leader, kms : String
+    let name, winner, leader, kms, imgUrl : String
 }
