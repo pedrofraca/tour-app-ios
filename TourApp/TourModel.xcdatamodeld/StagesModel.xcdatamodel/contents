@@ -3,6 +3,8 @@
     <entity name="Stage" representedClassName=".Stage" syncable="YES">
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="images" optional="YES" attributeType="Transformable" valueTransformerName="Array" customClassName="[String]"/>
+        <attribute name="kms" optional="YES" attributeType="String"/>
+        <attribute name="leader" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="winner" optional="YES" attributeType="String"/>
         <uniquenessConstraints>
@@ -12,6 +14,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Stage" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Stage" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

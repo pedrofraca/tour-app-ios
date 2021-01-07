@@ -108,22 +108,18 @@ struct TourStageRowView : View {
     var body: some View {
         ZStack(alignment: .top) {
             UrlImageView(url : stage.imgUrl)
-            HStack {
-                VStack(alignment: .leading, spacing: 0) {
-                        HStack {
-                            Text(stage.name).foregroundColor(Color(UIColor.white))
-                                .fontWeight(.semibold)
-                            //                        Spacer()
-                            //                        Text("KMs " +  stage.kms)
-                        }
-                    }
+            VStack {
+                Spacer()
+                
+                
+                    
+                VStack(alignment: .leading) {
+                    Text(stage.name + " " +  stage.kms + "Kms").foregroundColor(Color(UIColor.white))
+                                        .fontWeight(.semibold)
+                    Text("Winner: " + stage.winner).foregroundColor(.white).font(Font.title).bold()
+                }.padding()
             }
             
-//            HStack {
-//                Text("Winner: " + stage.winner).frame(maxWidth: .infinity)
-//                Spacer()
-//                Text("Leader: " + stage.leader).frame(maxWidth: .infinity)
-//            }.background(Color.yellow)
             
         }
     }
@@ -139,14 +135,19 @@ struct UrlImageView : View {
     }
     
     var body : some View {
-        Image(uiImage: image)
-            .resizable()
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(radius: 5)
-            .frame(width: UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.45)
-            .onReceive(imageLoader.didChange) { data in
-                self.image = UIImage(data: data) ?? UIImage()
-            }
+        ZStack {
+                Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                .frame(width:UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.65, alignment: .center)
+                //.clipShape(RoundedRectangle(cornerRadius: 20))
+                .clipped()
+                .onReceive(imageLoader.didChange) { data in
+                    self.image = UIImage(data: data) ?? UIImage()
+                }
+            LinearGradient(gradient: Gradient(colors:[.clear, .black]), startPoint: .top, endPoint: .bottom)
+        }.cornerRadius(30)
+        
     }
 }
 

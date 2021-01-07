@@ -24,6 +24,8 @@ class StageDatabaseSource : WriteDataSource {
         stage.id = domainStage.stage
         stage.winner = domainStage.winner
         stage.images = domainStage.images
+        stage.kms = domainStage.km
+        stage.leader = domainStage.leader
         do {
             try theContext.save()
         } catch {
@@ -45,7 +47,7 @@ class StageDatabaseSource : WriteDataSource {
                 leader: "",
                 images: $0.images,
                 description: "",
-                km: "",
+                km: $0.kms,
                 imgUrl: "",
                 date: "",
                 stage: 0,
