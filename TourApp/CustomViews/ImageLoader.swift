@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class ImageLoader: ObservableObject {
     var didChange = PassthroughSubject<Data, Never>()
@@ -34,6 +35,28 @@ class ImageLoader: ObservableObject {
             }
         }
         task.resume()
+    }
+}
+
+struct ImageView : View {
+    
+    @ObservedObject var imageLoader = ImageLoader()
+    @State var image:UIImage = UIImage()
+    
+    init(url : String) {
+        self.imageLoader.load(urlString: url)
+    }
+    
+    var body : some View {
+        ZStack {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                .clipped()
+                .onReceive(imageLoader.didChange) { data in
+                    self.image = UIImage(data: data) ?? UIImage()
+            }
+        }
     }
 }
 

@@ -11,7 +11,7 @@
 		9BAA31C9AF4FF4314A31280C /* Pods_TourAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0833FEAE717ACFDF07BBC652 /* Pods_TourAppTests.framework */; };
 		A71A6DCB242EA6F200E45611 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DCA242EA6F200E45611 /* AppDelegate.swift */; };
 		A71A6DCD242EA6F200E45611 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DCC242EA6F200E45611 /* SceneDelegate.swift */; };
-		A71A6DCF242EA6F200E45611 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DCE242EA6F200E45611 /* ContentView.swift */; };
+		A71A6DCF242EA6F200E45611 /* StagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DCE242EA6F200E45611 /* StagesListView.swift */; };
 		A71A6DD1242EA6F400E45611 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71A6DD0242EA6F400E45611 /* Assets.xcassets */; };
 		A71A6DD4242EA6F400E45611 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71A6DD3242EA6F400E45611 /* Preview Assets.xcassets */; };
 		A71A6DD7242EA6F400E45611 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71A6DD5242EA6F400E45611 /* LaunchScreen.storyboard */; };
@@ -21,6 +21,7 @@
 		A748AD79248B959B00ECE694 /* StageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748AD78248B959B00ECE694 /* StageDetailView.swift */; };
 		A748AD7C248D292400ECE694 /* TourStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748AD7B248D292400ECE694 /* TourStage.swift */; };
 		A748AD7F248D2F6B00ECE694 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748AD7E248D2F6B00ECE694 /* Stage.swift */; };
+		A7492BE225B644D900ACE4F4 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7492BE125B644D900ACE4F4 /* ActivityIndicator.swift */; };
 		A75C51F92430853500600735 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A75C51F82430853500600735 /* GoogleService-Info.plist */; };
 		A76C523F248394E300ECE048 /* TourApiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C523E248394E300ECE048 /* TourApiDataSource.swift */; };
 		A76C52412483957C00ECE048 /* StageDatabaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C52402483957C00ECE048 /* StageDatabaseSource.swift */; };
@@ -55,7 +56,7 @@
 		A71A6DC7242EA6F200E45611 /* TourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71A6DCA242EA6F200E45611 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A71A6DCC242EA6F200E45611 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A71A6DCE242EA6F200E45611 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A71A6DCE242EA6F200E45611 /* StagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagesListView.swift; sourceTree = "<group>"; };
 		A71A6DD0242EA6F400E45611 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A71A6DD3242EA6F400E45611 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A71A6DD6242EA6F400E45611 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		A748AD78248B959B00ECE694 /* StageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDetailView.swift; sourceTree = "<group>"; };
 		A748AD7B248D292400ECE694 /* TourStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourStage.swift; sourceTree = "<group>"; };
 		A748AD7E248D2F6B00ECE694 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		A7492BE125B644D900ACE4F4 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A75C51F82430853500600735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A76C523E248394E300ECE048 /* TourApiDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourApiDataSource.swift; sourceTree = "<group>"; };
 		A76C52402483957C00ECE048 /* StageDatabaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDatabaseSource.swift; sourceTree = "<group>"; };
@@ -155,12 +157,12 @@
 		A71A6DC9242EA6F200E45611 /* TourApp */ = {
 			isa = PBXGroup;
 			children = (
-				A748AD7D248D2A5700ECE694 /* data */,
+				A7492BE325B6470900ACE4F4 /* CustomViews */,
 				A748AD7A248D291400ECE694 /* model */,
 				A7477CEA2484C8B100DEB23E /* datasource */,
 				A71A6DCA242EA6F200E45611 /* AppDelegate.swift */,
 				A71A6DCC242EA6F200E45611 /* SceneDelegate.swift */,
-				A71A6DCE242EA6F200E45611 /* ContentView.swift */,
+				A71A6DCE242EA6F200E45611 /* StagesListView.swift */,
 				A748AD78248B959B00ECE694 /* StageDetailView.swift */,
 				A71A6DD0242EA6F400E45611 /* Assets.xcassets */,
 				A71A6DD5242EA6F400E45611 /* LaunchScreen.storyboard */,
@@ -168,7 +170,6 @@
 				A75C51F82430853500600735 /* GoogleService-Info.plist */,
 				A71A6DD2242EA6F400E45611 /* Preview Content */,
 				A7477CEB248581BA00DEB23E /* TourModel.xcdatamodeld */,
-				A7B3FE9825A682AB0046799D /* ImageLoader.swift */,
 			);
 			path = TourApp;
 			sourceTree = "<group>";
@@ -202,6 +203,8 @@
 		A7477CEA2484C8B100DEB23E /* datasource */ = {
 			isa = PBXGroup;
 			children = (
+				A76C52402483957C00ECE048 /* StageDatabaseSource.swift */,
+				A76C523E248394E300ECE048 /* TourApiDataSource.swift */,
 			);
 			path = datasource;
 			sourceTree = "<group>";
@@ -215,13 +218,13 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		A748AD7D248D2A5700ECE694 /* data */ = {
+		A7492BE325B6470900ACE4F4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				A76C523E248394E300ECE048 /* TourApiDataSource.swift */,
-				A76C52402483957C00ECE048 /* StageDatabaseSource.swift */,
+				A7B3FE9825A682AB0046799D /* ImageLoader.swift */,
+				A7492BE125B644D900ACE4F4 /* ActivityIndicator.swift */,
 			);
-			path = data;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,11 +472,12 @@
 				A7B3FE9925A682AB0046799D /* ImageLoader.swift in Sources */,
 				A7477CED248581BA00DEB23E /* TourModel.xcdatamodeld in Sources */,
 				A748AD7F248D2F6B00ECE694 /* Stage.swift in Sources */,
+				A7492BE225B644D900ACE4F4 /* ActivityIndicator.swift in Sources */,
 				A76C52412483957C00ECE048 /* StageDatabaseSource.swift in Sources */,
 				A71A6DCB242EA6F200E45611 /* AppDelegate.swift in Sources */,
 				A76C523F248394E300ECE048 /* TourApiDataSource.swift in Sources */,
 				A71A6DCD242EA6F200E45611 /* SceneDelegate.swift in Sources */,
-				A71A6DCF242EA6F200E45611 /* ContentView.swift in Sources */,
+				A71A6DCF242EA6F200E45611 /* StagesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

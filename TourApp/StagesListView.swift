@@ -35,13 +35,13 @@ class TourStageViewModel: ObservableObject {
         let repo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: theContext))
         
         let networkObservable = Observable<[TourStage]>.create { observer in
-            observer.onNext(repo.refresh().map { a in TourStage(id: a.stage, name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.images?[0] ?? "") })
+            observer.onNext(repo.refresh().map { a in TourStage(id: a.stage, name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.imgUrl ?? "", profileUrl: a.profileImgUrl ?? "") })
             observer.onCompleted()
             return Disposables.create()
         }
         
         let databaseObservable = Observable<[TourStage]>.create { observer in
-            observer.onNext(repo.stages.map { a in TourStage(id: a.stage,name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.images?[0] ?? "") })
+            observer.onNext(repo.stages.map { a in TourStage(id: a.stage,name: a.name, winner: a.winner ?? "", leader: a.leader ?? "", kms: a.km ?? "", imgUrl: a.imgUrl ?? "", profileUrl: a.profileImgUrl ?? "") })
             observer.onCompleted()
             return Disposables.create()
         }
@@ -59,7 +59,7 @@ class TourStageViewModel: ObservableObject {
     }
 }
 
-struct ContentView: View {
+struct StagesListView: View {
     @ObservedObject public var viewModel  = TourStageViewModel(context: (UIApplication.shared.delegate as! AppDelegate).updateContext)
     
     var body: some View {
@@ -75,7 +75,11 @@ struct ContentView: View {
 
 struct LoadingView : View {
     var body : some View {
-        Text("Loading")
+        VStack{
+            Text("Loading").foregroundColor(.white).font(Font.title).bold()
+            ActivityIndicator(isAnimating: .constant(true), style: .medium)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.yellow).edgesIgnoringSafeArea(.all)
+        
     }
 }
 
@@ -86,16 +90,17 @@ struct DoneView : View {
     var body : some View {
         NavigationView {
             ScrollView {
+                VStack{
+                    EmptyView()
+                }.padding(.top, 50)
                 ForEach(stages, id:\.self) { stage in
                     ZStack{
                         TourStageRowView(stage: stage)
-                        NavigationLink(destination: StageDetailView(stage: stage)) {
-                            EmptyView()
-                        }
+                        
                     }
                 }.padding()
-            }.navigationBarTitle(Text("Tour App Stages(\(stages.count))"))
-        }
+            }.background(Color.yellow).edgesIgnoringSafeArea(.all)
+        }.accentColor( .white).preferredColorScheme(.dark) // white tint on status bar
     }
 }
 
@@ -103,57 +108,60 @@ struct DoneView : View {
 
 struct TourStageRowView : View {
     let stage : TourStage
-    
+    @State var active : Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
-            UrlImageView(url : stage.imgUrl)
+            UrlImageView(url : stage.imgUrl, stageId: stage.id).onTapGesture {                
+                self.active = true
+            }
             VStack {
                 Spacer()
-                
-                
-                    
                 VStack(alignment: .leading) {
-                    Text(stage.name + " " +  stage.kms + "Kms").foregroundColor(Color(UIColor.white))
-                                        .fontWeight(.semibold)
+                    Text(stage.name + " " +  stage.kms + "Kms").foregroundColor(.white)
+                        .fontWeight(.semibold)
                     Text("Winner: " + stage.winner).foregroundColor(.white).font(Font.title).bold()
                 }.padding()
             }
-            
-            
+            NavigationLink(destination: StageDetailView(stage: stage), isActive: self.$active) {
+                EmptyView()
+            }
         }
     }
 }
 
 struct UrlImageView : View {
+    let stageId : Int32
     
     @ObservedObject var imageLoader = ImageLoader()
-    @State var image:UIImage = UIImage(imageLiteralResourceName: "stage_1")
+    @State var image:UIImage = UIImage()
     
-    init(url : String) {
+    init(url : String, stageId : Int32) {
+        self.stageId = stageId
         self.imageLoader.load(urlString: url)
     }
     
     var body : some View {
         ZStack {
-                Image(uiImage: image)
+            Text("")
+                .frame(width:UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.65).background(Color.white)
+            Image(uiImage: image)
                 .resizable()
                 .scaledToFill()
-                .frame(width:UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.65, alignment: .center)
-                //.clipShape(RoundedRectangle(cornerRadius: 20))
+                .frame(width:UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.65 , alignment: .center)
                 .clipped()
                 .onReceive(imageLoader.didChange) { data in
                     self.image = UIImage(data: data) ?? UIImage()
-                }
+            }
             LinearGradient(gradient: Gradient(colors:[.clear, .black]), startPoint: .top, endPoint: .bottom)
-        }.cornerRadius(30)
+        }.frame(width:UIScreen.main.bounds.size.width * 0.90, height: UIScreen.main.bounds.size.height * 0.65 , alignment: .center).cornerRadius(30)
         
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let stage = TourStage(id: 0, name: "",winner: "",leader: "",kms: "", imgUrl: "")
-        return TourStageRowView(stage: stage)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let stage = TourStage(id: 0, name: "",winner: "",leader: "",kms: "", imgUrl: "")
+//        return TourStageRowView(stage: stage, isExpand: false, activeStage: 1)
+//    }
+//}

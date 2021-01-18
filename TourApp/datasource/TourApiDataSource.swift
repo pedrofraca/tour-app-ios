@@ -63,7 +63,8 @@ public class TourApiDataSource : ReadOnlyDataSource {
                                                                    images: $0.imgs,
                                                                    description: "",
                                                                    km: $0.km,
-                                                                   imgUrl: "",
+                                                                   imgUrl: $0.imgs[0],
+                                                                   profileImgUrl: $0.imgs[1],
                                                                    date: "",
                                                                    stage: Int32($0.stage) ?? 0,
                                                                    averageSpeed: "",
@@ -72,7 +73,7 @@ public class TourApiDataSource : ReadOnlyDataSource {
         } catch  {
             debugPrint("Error while decoding response")
         }
-        debugPrint("Network")
+    
         return data
     }
     
