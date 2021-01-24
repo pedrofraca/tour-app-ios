@@ -47,7 +47,7 @@ class TourStageViewModel: ObservableObject {
         }
         
         Observable.concat(databaseObservable, networkObservable)
-            .filter { it in it.count>0 }
+            .filter { it in !it.isEmpty }
             .first()
             .asObservable()
             .subscribeOn(concurrentBackground)

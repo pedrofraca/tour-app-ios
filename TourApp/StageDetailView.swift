@@ -11,6 +11,7 @@ import SwiftUI
 struct StageDetailView: View {
     
     var stage : TourStage
+    @State var tag:Int? = nil
     
     var body: some View {
         VStack {
@@ -33,8 +34,11 @@ struct StageDetailView: View {
                 Text(stage.winner).foregroundColor(.gray).padding()
             }.frame(maxWidth: .infinity).background(Color.white).padding()
             
+            NavigationLink(destination: ClassificationView(),tag: 1, selection: $tag) {
+                EmptyView()
+            }
             Button(action: {
-                // What to perform
+                self.tag = 1
             }) {
                 Text("Show Classification").foregroundColor(.black).bold().padding()
             }
