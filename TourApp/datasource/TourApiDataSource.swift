@@ -73,7 +73,6 @@ public class TourApiDataSource : ReadOnlyDataSource {
         } catch  {
             debugPrint("Error while decoding response")
         }
-    
         return data
     }
     

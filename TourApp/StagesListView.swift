@@ -31,7 +31,6 @@ class TourStageViewModel: ObservableObject {
     }
     
     func updateStages() {
-        state = .loading
         let repo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: theContext))
         
         let networkObservable = Observable<[TourStage]>.create { observer in
@@ -67,7 +66,11 @@ struct StagesListView: View {
             if viewModel.state == .loading {
                 LoadingView()
             } else if viewModel.state == .done {
-                DoneView(stages: viewModel.stages)
+                if(viewModel.stages.isEmpty) {
+                    EmptyView()
+                } else {
+                    DoneView(stages: viewModel.stages)
+                }
             }
         }
     }
@@ -80,6 +83,14 @@ struct LoadingView : View {
             ActivityIndicator(isAnimating: .constant(true), style: .medium)
         }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.yellow).edgesIgnoringSafeArea(.all)
         
+    }
+}
+
+struct EmptyView : View {
+    var body : some View {
+        VStack{
+            Text("No Results").foregroundColor(.white).font(Font.title).bold()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.yellow).edgesIgnoringSafeArea(.all)
     }
 }
 
