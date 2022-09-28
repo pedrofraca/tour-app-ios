@@ -13,15 +13,9 @@ struct StageApiModel: Codable {
     var date: String
     var name: String
     var winner: String
-    var leader: String
     var km : String
-    var stage : String
-    var imgs : [String]
-    
-    enum CodingKeys: String, CodingKey {
-        case date, name, winner = "stage-winner", leader = "stage-leader", km, stage
-        case imgs = "stage-images"
-    }
+    var stage : Int32
+    var images : [String]
     
 }
 
@@ -45,7 +39,7 @@ public class TourApiDataSource : ReadOnlyDataSource {
     public func getAll() -> [Any] {
         var data : [DomainStageModel] = []
         
-        guard let url = URL(string: "https://tourscraping.appspot.com/tour") else {
+        guard let url = URL(string: "https://api.atool.ws/api/stage") else {
             print("Invalid URL")
             return data
         }
@@ -53,25 +47,26 @@ public class TourApiDataSource : ReadOnlyDataSource {
         let request = URLRequest(url: url)
         
         let d =  URLSession.shared.sendSynchronousRequest(request: request)
+        debugPrint(d)
         do {
             if(d.0 != nil) {
                 let decodedResponse = try JSONDecoder().decode([StageApiModel].self, from: d.0!)
                     
                 data = decodedResponse.map { DomainStageModel.init(name: $0.name,
                                                                    winner: $0.winner,
-                                                                   leader: $0.leader,
-                                                                   images: $0.imgs,
+                                                                   leader: "",
+                                                                   images: $0.images,
                                                                    description: "",
                                                                    km: $0.km,
-                                                                   imgUrl: $0.imgs[0],
-                                                                   profileImgUrl: $0.imgs[1],
+                                                                   imgUrl: $0.images[0],
+                                                                   profileImgUrl: $0.images[1],
                                                                    date: "",
-                                                                   stage: Int32($0.stage) ?? 0,
+                                                                   stage: $0.stage,
                                                                    averageSpeed: "",
                                                                    startFinish: "")}
             }
         } catch  {
-            debugPrint("Error while decoding response")
+            debugPrint("Error while decoding response \(error)")
         }
         return data
     }

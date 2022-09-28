@@ -101,16 +101,12 @@ struct DoneView : View {
     var body : some View {
         NavigationView {
             ScrollView {
-                VStack{
-                    EmptyView()
-                }.padding(.top, 50)
                 ForEach(stages, id:\.self) { stage in
                     ZStack{
                         TourStageRowView(stage: stage)
-                        
                     }
                 }.padding()
-            }.background(Color.yellow).edgesIgnoringSafeArea(.all)
+            }.padding(.top, 50).background(Color.yellow).edgesIgnoringSafeArea(.all)
         }.accentColor( .white).preferredColorScheme(.dark) // white tint on status bar
     }
 }
@@ -135,7 +131,7 @@ struct TourStageRowView : View {
                 }.padding()
             }
             NavigationLink(destination: StageDetailView(stage: stage), isActive: self.$active) {
-                EmptyView()
+                //EmptyView()
             }
         }
     }

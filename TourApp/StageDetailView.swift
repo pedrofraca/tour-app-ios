@@ -35,7 +35,6 @@ struct StageDetailView: View {
             }.frame(maxWidth: .infinity).background(Color.white).padding()
             
             NavigationLink(destination: ClassificationView(),tag: 1, selection: $tag) {
-                EmptyView()
             }
             Button(action: {
                 self.tag = 1
