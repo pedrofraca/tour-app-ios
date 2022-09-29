@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import data
+import usecase
 
 public class StageAsFavouriteWriteDataSource : WriteDataSource {
     
@@ -22,20 +22,29 @@ public class StageAsFavouriteWriteDataSource : WriteDataSource {
             print("Invalid URL")
             return false
         }
-
-        let json: [String: Any] = ["stageId": 2,"username": "Shervin1","favouriteState":true]
+        let itemToBeSaved = item as! SetStageAsFavoriteParam
+        
+        let json: [String: Any] = ["stageId": itemToBeSaved.stageId,"username": itemToBeSaved.username,"favouriteState":itemToBeSaved.favouriteState]
+        
         var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         request.httpMethod="PATCH"
         request.httpBody=jsonData
         
         let d =  URLSession.shared.sendSynchronousRequest(request: request)
         
-        guard(d.2==nil) else {
-            return false
-        }
+        let responseData = String(data: d.0!, encoding: String.Encoding.utf8)
+        debugPrint(responseData)
         
-        return true
+        if let httpResponse = d.1 as? HTTPURLResponse {
+              print("statusCode: \(httpResponse.statusCode)")
+            if(httpResponse.statusCode==500) {
+                return false
+            }
+            return true
+          }
+        return false
     }
     
 }

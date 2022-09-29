@@ -7,15 +7,16 @@
 //
 
 import SwiftUI
-import data
 import usecase
 
 struct StageDetailView: View {
     
     var stage : TourStage
     @State var tag:Int? = nil
+    @State var result:Bool? = nil
     
     var body: some View {
+        
         VStack {
             ZStack(alignment: .top) {
                 ImageView(url : stage.imgUrl).frame(maxHeight: 300).clipped()
@@ -28,12 +29,21 @@ struct StageDetailView: View {
                         let stageRepo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: (UIApplication.shared.delegate as! AppDelegate).updateContext))
 
                         
-                        let a = SetStageAsFavoriteUseCaseImpl(repository: stageAsFavouriteRepo, stageRepository: stageRepo as! DataStageRepository)
+                        let a = SetStageAsFavoriteUseCaseImpl(repository: stageAsFavouriteRepo, stageRepository: stageRepo)
                         
-                        let param = DataSetStageAsFavoriteParam(username: "", stageId: 1, favouriteState: true)
-                        a.invoke(param: param)
+                        let param = SetStageAsFavoriteParam(username: "aoeuaoeuaoeuaoe", stageId: 44, favouriteState: true)
+                        result = a.invoke(param: param)
                     }) {
                         Text("Mark Favourite").foregroundColor(.white).bold()
+                        if(result != nil) {
+                            if(!result!) {
+                                Text("Error").foregroundColor(.red).bold()
+                            } else {
+                                Text("Success").foregroundColor(.green).bold()
+                            }
+                        }
+                        
+                        
                     }
                     Text(stage.name).foregroundColor(.white).bold()
                 }.padding()
@@ -66,6 +76,6 @@ struct StageDetailView: View {
 
 struct StageDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        StageDetailView(stage : TourStage.init(id: 1, name: "Test Stage", winner : "", leader: "", kms : "", imgUrl: "", profileUrl: ""))
+        StageDetailView(stage : TourStage.init(id: 1, name: "Test Stage", winner : "", leader: "", kms : "", imgUrl: "", profileUrl: ""), result: true)
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import data
 import usecase
 import CoreData
 import RxSwift

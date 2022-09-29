@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import data
+import usecase
 
 struct StageApiModel: Codable {
     var date: String
@@ -38,7 +38,7 @@ public class TourApiDataSource : ReadOnlyDataSourceWithFilter {
     
     public func get(param: Any?) -> Any? {
         var data = getAll().map {$0 as! DomainStage}
-        return data.filter { $0.stage == param as! Int32 }
+        return data.filter { $0.stage == (param as! NSString).integerValue }
     }
     
     

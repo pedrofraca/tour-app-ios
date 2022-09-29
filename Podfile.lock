@@ -51,14 +51,12 @@ PODS:
   - RxRelay (5.1.3):
     - RxSwift (~> 5)
   - RxSwift (5.1.3)
-  - TourAppData (0.0.19)
-  - TourAppUsecase (0.0.19)
+  - TourAppUsecase (0.0.21)
 
 DEPENDENCIES:
   - Firebase/Crashlytics
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
-  - TourAppData (from `https://github.com/pedrofraca/TourAppDataPod.git`)
   - TourAppUsecase (from `https://github.com/pedrofraca/tour-app-usecase-pod.git`)
 
 SPEC REPOS:
@@ -78,17 +76,12 @@ SPEC REPOS:
     - RxSwift
 
 EXTERNAL SOURCES:
-  TourAppData:
-    :git: https://github.com/pedrofraca/TourAppDataPod.git
   TourAppUsecase:
     :git: https://github.com/pedrofraca/tour-app-usecase-pod.git
 
 CHECKOUT OPTIONS:
-  TourAppData:
-    :commit: 3c1fe5592b7765cc85230cdfd975050cd261d4c0
-    :git: https://github.com/pedrofraca/TourAppDataPod.git
   TourAppUsecase:
-    :commit: 458e0d54b2d7ea5beab1d2fcda80a507412e3416
+    :commit: 30210952dd7412ce931835e50706676d1ef5c8ec
     :git: https://github.com/pedrofraca/tour-app-usecase-pod.git
 
 SPEC CHECKSUMS:
@@ -105,9 +98,8 @@ SPEC CHECKSUMS:
   RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
   RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
-  TourAppData: 748a5732b0d838582db27263dd13bb386053e118
-  TourAppUsecase: 5790b3408820707c9c0a425c687cb2150eac1630
+  TourAppUsecase: 340042e4a58e2168b4a85963a305eacd9adbb3a0
 
-PODFILE CHECKSUM: 1058ae26c432699265b2ca9b6d0ca74db43b2026
+PODFILE CHECKSUM: 8417a93bcabbba1d21b158fdc4ef22877e8dc99f
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

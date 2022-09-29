@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import data
+import usecase
 
 class StageDatabaseSource : WriteDataSource {
 
