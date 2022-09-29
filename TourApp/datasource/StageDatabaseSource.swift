@@ -7,18 +7,19 @@
 //
 
 import Foundation
-import data
 import CoreData
+import data
 
 class StageDatabaseSource : WriteDataSource {
+
     var theContext : NSManagedObjectContext
     
     init(context : NSManagedObjectContext) {
         theContext = context
     }
     
-    func save(item: Any?) {
-        let domainStage = item as! DomainStageModel
+    func save(item: Any?) -> Bool  {
+        let domainStage = item as! DomainStage
         let stage = Stage(context: theContext)
         stage.name = domainStage.name
         stage.id = domainStage.stage
@@ -28,9 +29,11 @@ class StageDatabaseSource : WriteDataSource {
         stage.leader = domainStage.leader
         do {
             try theContext.save()
+            return true
         } catch {
             let nserror = error as NSError
             debugPrint(nserror)
+            return false
         }
     }
     
@@ -38,11 +41,12 @@ class StageDatabaseSource : WriteDataSource {
         let fetchRequest = NSFetchRequest<Stage>(entityName: "Stage")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Stage.id), ascending: true)]
         let objects = try? theContext.fetch(fetchRequest)
-        var data : [DomainStageModel] = []
+        var data : [DomainStage] = []
 
         if let values = objects {
             data = values.map {
-                DomainStageModel.init(name: $0.name ?? "",
+                DomainStage.init(name: $0.name ?? "",
+                stage: 0,
                 winner: $0.winner,
                 leader: "",
                 images: $0.images,
@@ -51,7 +55,6 @@ class StageDatabaseSource : WriteDataSource {
                 imgUrl: $0.images?[0],
                 profileImgUrl: $0.images?[1],
                 date: "",
-                stage: 0,
                 averageSpeed: "",
                 startFinish: "")
             }

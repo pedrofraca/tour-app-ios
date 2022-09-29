@@ -8,6 +8,7 @@ target 'TourApp' do
   # Pods for TourApp
   pod 'Firebase/Crashlytics'
   pod 'TourAppData', :git => 'https://github.com/pedrofraca/TourAppDataPod.git'
+  pod 'TourAppUsecase', :git => 'https://github.com/pedrofraca/tour-app-usecase-pod.git'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   

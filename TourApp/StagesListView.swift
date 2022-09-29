@@ -8,6 +8,7 @@
 
 import SwiftUI
 import data
+import usecase
 import CoreData
 import RxSwift
 
@@ -22,6 +23,8 @@ class TourStageViewModel: ObservableObject {
     @Published var state : LoadingState = .loading
     @Published var stages : [TourStage] = []
     
+    
+    
     var theContext : NSManagedObjectContext
     let disposeBag = DisposeBag()
     
@@ -31,6 +34,7 @@ class TourStageViewModel: ObservableObject {
     }
     
     func updateStages() {
+        
         let repo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: theContext))
         
         let networkObservable = Observable<[TourStage]>.create { observer in

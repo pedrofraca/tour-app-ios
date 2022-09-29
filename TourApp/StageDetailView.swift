@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import data
+import usecase
 
 struct StageDetailView: View {
     
@@ -20,9 +22,22 @@ struct StageDetailView: View {
                 LinearGradient(gradient: Gradient(colors:[.clear, .black]), startPoint: .top, endPoint: .bottom)
                 VStack(alignment: .leading){
                     Spacer()
+                    Button(action: {
+                        let stageAsFavouriteRepo = FavouritesRepositoryImpl(setFavouriteApi: StageAsFavouriteWriteDataSource(), favouritesListApi: TourApiDataSource())
+                        
+                        let stageRepo = StagesRepositoryFactory().build(apiDataSource: TourApiDataSource(), databaseDataSource: StageDatabaseSource(context: (UIApplication.shared.delegate as! AppDelegate).updateContext))
+
+                        
+                        let a = SetStageAsFavoriteUseCaseImpl(repository: stageAsFavouriteRepo, stageRepository: stageRepo as! DataStageRepository)
+                        
+                        let param = DataSetStageAsFavoriteParam(username: "", stageId: 1, favouriteState: true)
+                        a.invoke(param: param)
+                    }) {
+                        Text("Mark Favourite").foregroundColor(.white).bold()
+                    }
                     Text(stage.name).foregroundColor(.white).bold()
                 }.padding()
-                
+               
                 }.frame(minWidth: 0, maxWidth: UIScreen.main.bounds.size.width, minHeight: 0, maxHeight: 300)
             VStack(alignment: .leading) {
                 Text("Stage Profile").foregroundColor(.black).bold().padding()

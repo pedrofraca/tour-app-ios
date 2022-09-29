@@ -1,62 +1,72 @@
 PODS:
-  - Firebase/CoreOnly (7.4.0):
-    - FirebaseCore (= 7.4.0)
-  - Firebase/Crashlytics (7.4.0):
+  - Firebase/CoreOnly (9.6.0):
+    - FirebaseCore (= 9.6.0)
+  - Firebase/Crashlytics (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 7.4.0)
-  - FirebaseCore (7.4.0):
-    - FirebaseCoreDiagnostics (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.4.0):
-    - GoogleDataTransport (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-    - nanopb (~> 2.30907.0)
-  - FirebaseCrashlytics (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleDataTransport (~> 8.0)
-    - nanopb (~> 2.30907.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
-  - GoogleDataTransport (8.2.0):
-    - nanopb (~> 2.30907.0)
-  - GoogleUtilities/Environment (7.2.0):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.2.0):
+    - FirebaseCrashlytics (~> 9.6.0)
+  - FirebaseCore (9.6.0):
+    - FirebaseCoreDiagnostics (~> 9.0)
+    - FirebaseCoreInternal (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+  - FirebaseCoreDiagnostics (9.6.0):
+    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseCoreInternal (9.6.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+  - FirebaseCrashlytics (9.6.0):
+    - FirebaseCore (~> 9.0)
+    - FirebaseInstallations (~> 9.0)
+    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (~> 2.1)
+  - FirebaseInstallations (9.6.0):
+    - FirebaseCore (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - PromisesObjC (~> 2.1)
+  - GoogleDataTransport (9.2.0):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Environment (7.8.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (7.2.0):
+  - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
-  - nanopb (2.30907.0):
-    - nanopb/decode (= 2.30907.0)
-    - nanopb/encode (= 2.30907.0)
-  - nanopb/decode (2.30907.0)
-  - nanopb/encode (2.30907.0)
-  - PromisesObjC (1.2.12)
-  - RxCocoa (5.1.1):
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
+  - PromisesObjC (2.1.1)
+  - RxCocoa (5.1.3):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.1.1):
+  - RxRelay (5.1.3):
     - RxSwift (~> 5)
-  - RxSwift (5.1.1)
-  - TourAppData (0.0.9)
+  - RxSwift (5.1.3)
+  - TourAppData (0.0.19)
+  - TourAppUsecase (0.0.19)
 
 DEPENDENCIES:
   - Firebase/Crashlytics
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
   - TourAppData (from `https://github.com/pedrofraca/TourAppDataPod.git`)
+  - TourAppUsecase (from `https://github.com/pedrofraca/tour-app-usecase-pod.git`)
 
 SPEC REPOS:
   trunk:
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCoreInternal
     - FirebaseCrashlytics
     - FirebaseInstallations
     - GoogleDataTransport
@@ -70,27 +80,34 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   TourAppData:
     :git: https://github.com/pedrofraca/TourAppDataPod.git
+  TourAppUsecase:
+    :git: https://github.com/pedrofraca/tour-app-usecase-pod.git
 
 CHECKOUT OPTIONS:
   TourAppData:
-    :commit: b37380d38d69af62c78d7df7e389e3a993e7a0f8
+    :commit: 3c1fe5592b7765cc85230cdfd975050cd261d4c0
     :git: https://github.com/pedrofraca/TourAppDataPod.git
+  TourAppUsecase:
+    :commit: 458e0d54b2d7ea5beab1d2fcda80a507412e3416
+    :git: https://github.com/pedrofraca/tour-app-usecase-pod.git
 
 SPEC CHECKSUMS:
-  Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
-  FirebaseCore: 99c06e5a1e8d6952e75cb1f0a6d0b23c0f5ccdcf
-  FirebaseCoreDiagnostics: 3770093ac4f2be4590fa03cfa1d3a6e5602d4557
-  FirebaseCrashlytics: ef6b0947ab6819b5cb335f8c0a7677cd57d544c5
-  FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
-  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
-  GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
-  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  TourAppData: 93b33169db505dcdc2019f087b9954e40969db88
+  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
+  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
+  FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
+  FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
+  FirebaseCrashlytics: 3210572ddb77801e5a0bd9d7bc890769f2066a0c
+  FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  TourAppData: 748a5732b0d838582db27263dd13bb386053e118
+  TourAppUsecase: 5790b3408820707c9c0a425c687cb2150eac1630
 
-PODFILE CHECKSUM: f50cb451b01cb6df2872e9550d99c960e308f563
+PODFILE CHECKSUM: 1058ae26c432699265b2ca9b6d0ca74db43b2026
 
 COCOAPODS: 1.11.2

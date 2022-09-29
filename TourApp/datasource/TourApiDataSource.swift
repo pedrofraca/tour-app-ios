@@ -34,10 +34,16 @@ extension URLSession {
     }
 }
 
-public class TourApiDataSource : ReadOnlyDataSource {
+public class TourApiDataSource : ReadOnlyDataSourceWithFilter {
+    
+    public func get(param: Any?) -> Any? {
+        var data = getAll().map {$0 as! DomainStage}
+        return data.filter { $0.stage == param as! Int32 }
+    }
+    
     
     public func getAll() -> [Any] {
-        var data : [DomainStageModel] = []
+        var data : [DomainStage] = []
         
         guard let url = URL(string: "https://api.atool.ws/api/stage") else {
             print("Invalid URL")
@@ -52,7 +58,8 @@ public class TourApiDataSource : ReadOnlyDataSource {
             if(d.0 != nil) {
                 let decodedResponse = try JSONDecoder().decode([StageApiModel].self, from: d.0!)
                     
-                data = decodedResponse.map { DomainStageModel.init(name: $0.name,
+                data = decodedResponse.map { DomainStage.init(name: $0.name,
+                                                                   stage: $0.stage,
                                                                    winner: $0.winner,
                                                                    leader: "",
                                                                    images: $0.images,
@@ -61,7 +68,6 @@ public class TourApiDataSource : ReadOnlyDataSource {
                                                                    imgUrl: $0.images[0],
                                                                    profileImgUrl: $0.images[1],
                                                                    date: "",
-                                                                   stage: $0.stage,
                                                                    averageSpeed: "",
                                                                    startFinish: "")}
             }

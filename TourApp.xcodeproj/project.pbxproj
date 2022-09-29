@@ -17,6 +17,7 @@
 		A71A6DD7242EA6F400E45611 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71A6DD5242EA6F400E45611 /* LaunchScreen.storyboard */; };
 		A71A6DE2242EA6F400E45611 /* TourAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DE1242EA6F400E45611 /* TourAppTests.swift */; };
 		A71A6DED242EA6F400E45611 /* TourAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71A6DEC242EA6F400E45611 /* TourAppUITests.swift */; };
+		A7267CA228E50BBE0067803D /* StageAsFavouriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7267CA128E50BBE0067803D /* StageAsFavouriteDataSource.swift */; };
 		A7477CED248581BA00DEB23E /* TourModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7477CEB248581BA00DEB23E /* TourModel.xcdatamodeld */; };
 		A748AD79248B959B00ECE694 /* StageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748AD78248B959B00ECE694 /* StageDetailView.swift */; };
 		A748AD7C248D292400ECE694 /* TourStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748AD7B248D292400ECE694 /* TourStage.swift */; };
@@ -68,6 +69,7 @@
 		A71A6DE8242EA6F400E45611 /* TourAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71A6DEC242EA6F400E45611 /* TourAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourAppUITests.swift; sourceTree = "<group>"; };
 		A71A6DEE242EA6F400E45611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7267CA128E50BBE0067803D /* StageAsFavouriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageAsFavouriteDataSource.swift; sourceTree = "<group>"; };
 		A7477CEC248581BA00DEB23E /* StagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StagesModel.xcdatamodel; sourceTree = "<group>"; };
 		A748AD78248B959B00ECE694 /* StageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDetailView.swift; sourceTree = "<group>"; };
 		A748AD7B248D292400ECE694 /* TourStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourStage.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				A76C52402483957C00ECE048 /* StageDatabaseSource.swift */,
 				A76C523E248394E300ECE048 /* TourApiDataSource.swift */,
+				A7267CA128E50BBE0067803D /* StageAsFavouriteDataSource.swift */,
 			);
 			path = datasource;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				A748AD7F248D2F6B00ECE694 /* Stage.swift in Sources */,
 				A7492BE225B644D900ACE4F4 /* ActivityIndicator.swift in Sources */,
 				A76C52412483957C00ECE048 /* StageDatabaseSource.swift in Sources */,
+				A7267CA228E50BBE0067803D /* StageAsFavouriteDataSource.swift in Sources */,
 				A71A6DCB242EA6F200E45611 /* AppDelegate.swift in Sources */,
 				A76C523F248394E300ECE048 /* TourApiDataSource.swift in Sources */,
 				A71A6DCD242EA6F200E45611 /* SceneDelegate.swift in Sources */,
