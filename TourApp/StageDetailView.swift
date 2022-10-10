@@ -31,7 +31,7 @@ struct StageDetailView: View {
                         
                         let a = SetStageAsFavoriteUseCaseImpl(repository: stageAsFavouriteRepo, stageRepository: stageRepo)
                         
-                        let param = SetStageAsFavoriteParam(username: "aoeuaoeuaoeuaoe", stageId: 44, favouriteState: true)
+                        let param = SetStageAsFavoriteParam(username: "thisisnew", stageId: 44, favouriteState: true)
                         result = a.invoke(param: param)
                     }) {
                         Text("Mark Favourite").foregroundColor(.white).bold()
